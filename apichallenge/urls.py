@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from departures.views import get_csv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('departures/', include('departures.urls')),
+    path('csv/', get_csv, name='get_csv'),
 ]
