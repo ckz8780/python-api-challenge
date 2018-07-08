@@ -1,9 +1,11 @@
 from rest_framework import generics
 from rest_framework import serializers
-import requests, os, csv, json
-from django.shortcuts import redirect, reverse
+from django.shortcuts import redirect
+
+# Extra imports 
 from apichallenge.settings import BASE_DIR
 from datetime import datetime
+import requests, os, csv
 
 from .models import Departure
 
@@ -19,6 +21,9 @@ class DepartureView(generics.ListAPIView):
 def get_csv(request):
     """
     Builds a CSV w/ the specified filtering and then redirects to API root.
+    A much faster way to do this would be to set a limit (eg 9999) as a parameter to the
+    function to avoid repeated requests to the API...but that wasn't part
+    of the challenge :)
     """
 
     # Set request URL, date limit and category.
